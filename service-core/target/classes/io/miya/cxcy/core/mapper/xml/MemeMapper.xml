@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.miya.cxcy.core.mapper.MemeMapper">
+    <!--    @Select("select * from wiki_meme as w1 join (select ROUND(RAND() * ((select MAX(meme_id) from wiki_meme) - (select MIN(meme_id) from wiki_meme)) +(select MIN(meme_id) from wiki_meme))as id) as w2 where w1.meme_id >= w2.id order by w1.meme_id limit 1")-->
+
+    <select id="getByRand" resultType="io.miya.cxcy.core.pojo.entity.Meme">
+        select *
+        from meme as w1
+                 join (select ROUND(RAND() * ((select MAX(id) from meme) - (select MIN(id) from meme)) +
+                                    (select MIN(id) from meme)) as id) as w2
+        where w1.id >= w2.id
+        order by w1.id limit 1
+    </select>
+</mapper>

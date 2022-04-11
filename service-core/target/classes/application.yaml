@@ -1,0 +1,19 @@
+server:
+  port: 8100
+spring:
+  profiles:
+    active: dev
+  application:
+    name: service-core
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://106.14.24.91:3306/wiki?serverTimezone=GMT%2B8&characterEncoding=utf-8
+    username: root
+    password: ao1sakura
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:io/miya/cxcy/core/mapper/xml/*.xml
+  page:
+    size: 10
